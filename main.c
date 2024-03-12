@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define decal 1
+#define decal 3
 
 
 void cryptage(char p[],int decalage) {
@@ -19,9 +19,10 @@ void decryptage(char p[],int decalage) {
     int i = 0;
     while(p[i]!='\0') {
         p[i] -= decalage;
-        if(p[i] > 255) {
-            p[i] -= 255;
-        }
+        if(p[i] < 32)
+            p[i] += 32;
+        if( p[i] > 255)
+            p[i]-=255;
         i++;
     }
 }
@@ -41,11 +42,7 @@ printf("\n\ncode cryptee avec decalage de %d",decal);
     printf("\n%s",password);
 
 
-printf("\n\ncode dycrypter avec decalage de %d\n\n",decal);
+printf("\n\ncode dycrypter avec decalage de %d",decal);
     decryptage(password,decal);
-    printf("\n%s",password);
-
-
-
-
+    printf("\n%s\n\n",password);
 }
